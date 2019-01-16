@@ -1,0 +1,469 @@
+#googlemaps{
+    width:100%;
+}
+
+#ergebnisse{
+  text-align:center;
+  background:transparent;
+  margin-top:50px;
+}
+
+.offerRSiteInputs{
+  text-align:center;
+}
+
+#ds_cokkie_info{
+  display:none;
+  position:absolute;
+  position:fixed;
+  bottom:0;
+  margin-right:auto;
+  margin-left:auto;
+  width:100%;
+  background-color: white;
+  text-align: center;
+}
+
+#suche{
+    height:200px;
+    margin-top:100px;
+}
+#howto_background{
+  background: linear-gradient(lightgrey, white);
+  margin-bottom:50px;
+}
+#show_top_bg{
+  /* background: linear-gradient(white, white, #e5e5ff); */
+}
+
+#bimg{
+    background-image: url('img/anstellung-arbeit-arbeiter-33343.jpg');
+    width:100%;
+    right:0;
+    left:0;
+    margin: 0 auto;
+    max-height:800px;
+    margin-bottom:50px;
+    margin-top:-100px;
+}
+
+.multiCheckBox {
+  list-style: none;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.info_container_index{
+  background-color:transparent;
+  max-width:700px;
+  height:150px;
+  margin-right:auto;
+  margin-left: auto;
+  text-align: center;
+  font-family: Arial;
+  color:white;
+}
+.stats{
+  background-color:;
+  color:;
+  text-align: center;
+  border: none;
+
+}
+#search_index_input_background{
+    background:transparent;
+    border:none;
+    max-width:800px;
+    height:250px;
+    margin-top:;
+    margin-right:auto;
+    margin-left: auto;
+}
+
+#search_index_input_background_label{
+  width:160px;
+  margin-bottom:-5px;
+  font-family: Arial, Lucida Sans Typewriter, Lucida Console, Monaco, Bitstream Vera Sans Mono, monospace;
+  font-size: 22px;
+  border:none;
+  box-shadow: 2px 3px 3px grey;
+  background-color:;
+  color:;
+}
+
+#search_index_input{
+  padding:20px;
+  width:100%;
+  background: linear-gradient(white, lightgrey);
+  box-shadow: 2px 3px 3px grey;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+}
+
+#header_pic{
+    margin-right: 0em;
+    margin-left: 0em;
+}
+
+.info{
+    height: 100px;
+    margin-left:120px;
+}
+
+.nav_icons_deco{
+    color:black;
+    text-decoration:none;
+    text-align:center;
+    margin:18px;
+    border-radius:0;
+    /* background: linear-gradient(white, lightgrey); */
+}
+
+.nav_icons_deco:hover{
+    background-color:#F5F5F5;
+    box-shadow:1px 1px 1px 1px lightgrey;
+    background-color:white;
+    border-radius: 0;
+}
+
+#infos{
+    width:75%;
+    max-width:80%;
+    margin-left:20px;
+    margin-top:50px;
+}
+
+.search-icon{
+    width:35px;
+    height:35px;
+    margin:10px;
+
+}
+.inside-td{
+    width:100px;
+    text-align:center;
+}
+
+.icon_max_width{
+    max_width:80px;
+    margin-left:80px;
+}
+
+.inside-td: hover{
+    width:105px;
+}
+
+.title{
+    text-align:center;
+}
+
+.footer-distributed{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 36px 'Cookie', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  #5383d3;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #8f9296;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #ffffff;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color:  #5383d3;
+	text-decoration: none;;
+}
+
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;i
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
+}
+
+/* Anfrage - Formular CSS */
+
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+
+	/*background = gradient + image pattern combo*/
+	background:
+		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+
+/*form styles*/
+#msform {
+  max-width:450px;
+  min-width:400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+
+/*inputs*/
+#msform input, #msform textarea {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+#msform select{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+/*buttons*/
+#msform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 1px white, 0 0 0 2px #27AE60;
+}
+/*headings*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color:;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}

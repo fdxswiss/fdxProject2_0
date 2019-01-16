@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<div class="container" style=" font-family:Roboto; background-color:transparent;">
+  {% if anz_a %}
+  <div class="container thumbnail" style="text-align:center; border:none; margin-top:100px;">
+    <label style=" font-family:Roboto; font-size:18px; text-align:center;">{% if title %}<small>Aktive Branche: </small>{% endif %}{% if anz_f %}{% else %}Aktuelle Suche: {% endif %}{{ title }} {% if query %} Region: {{ query }}{% endif %}</label>
+  </div>
+  {% endif %}
+    <a href="{% url 'umzug' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+            <text style="text-align:center; font-size:16px; font-family:Arial;">Umzug</text>
+            <img src="{% static 'img/grafik2.png' %}" class="search-icon" />
+        </div>
+    </a>
+
+    <a href="{% url 'reinigung' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Reinigung</text>
+            <img src="{% static 'img/grafik3.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'maler' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Maler</text>
+            <img src="{% static 'img/grafik10.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'sanitaer' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Sanitär</text>
+            <img src="{% static 'img/grafik8.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'schreiner' %}">
+        <div class="col-xs-4 col-sm-3 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Schreiner</text>
+            <img src="{% static 'img/grafik7.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'architekt' %}">
+        <div class="col-xs-4 col-sm-3 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Architekt</text>
+            <img src="{% static 'img/grafik9.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'bodenbelaege' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Bodenbeläge</text>
+            <img src="{% static 'img/grafik_1.png' %}" class="search-icon">
+        </div>
+     </a>
+
+    <a href="{% url 'elektriker' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Elektriker</text>
+            <img src="{% static 'img/grafik5.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'gartenbau' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Gartenbau</text>
+            <img src="{% static 'img/grafik6.png' %}" class="search-icon">
+        </div>
+    </a>
+
+    <a href="{% url 'dachdecker' %}">
+        <div class="col-sm-3 col-xs-4 col-md-2 thumbnail nav_icons_deco" style="background-color:transparent; border:none; border-bottom:1px solid lightgrey;">
+          <text style="text-align:center; font-size:16px; font-family:Arial;">Dachdecker</text>
+            <img src="{% static 'img/grafik4.png' %}" class="search-icon">
+        </div>
+    </a>
+</div>

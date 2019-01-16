@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!-- Background style_dl1.css -->
+<div class="container-fluid" id="bimg">
+
+  <div class="container thumbnail info_container_index" style="margin-top:80px; background-color:transparent; border:none;">
+    <h1 id="index_banner_info1">Kostenlos Offerten aus Ihrer Region vergleichen.</h1>
+  </div>
+
+  <!-- Search inputs background -->
+    <div class="container thumbnail" id="search_index_input_background">
+
+      <div class="thumbnail" id="search_index_input_background_label">
+        <label>Firmensuche</label>
+      </div>
+
+      <form method="POST" action="">{% csrf_token %}
+            <!-- Search inputs -->
+        <div  class="" id="search_index_input">
+          <div class="thumbnail" style="width:50%; float:left; border:none; background-color:transparent;">
+            <input type="text" class="form-control" placeholder="Postleitzahl eintragen" maxlength="4" name="query" style="text-align:center; width:100%;" autofocus>
+          </div>
+          <div class="thumbnail" style="width:50%; float:left; border:none; background-color:transparent; text-align:center;">
+            <select type="button" class="btn btn-secondary" name="select" style="width:100%;">
+                <option value="X" selected="selected" style="text-align:center;">Branche wählen</option>
+                <option value="Umzug">Umzug</option>
+                <option value="Reinigung">Reinigung</option>
+                <option value="Maler">Maler</option>
+                <option value="Elektriker">Elektriker</option>
+                <option value="Schreiner">Schreiner</option>
+                <option value="Architekt">Architekt</option>
+                <option value="Gartenbau">Gartenbau</option>
+                <option value="Sanitaer">Sanitär</option>
+                <option value="Bodenbelaege">Bodenbeläge</option>
+                <option value="Dachdecker">Dachdecker</option>
+            </select>
+          </div>
+            <hr>
+          <div class="thumbnail" style="width:100%; border:none; background-color:transparent;">
+            <button class="btn btn-default" type="submit" style="width:100%; background-color:#3399ff; color:white; font-family:Roboto, Lucida Sans Typewriter, Lucida Console, Monaco, Bitstream Vera Sans Mono, monospace; margin-right:auto; margin-left:auto;"><b>Suche starten</b></button>
+          </div>
+          {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+    </form>
+
+    </div>
+
+      <div class="container thumbnail info_container_index" style="font-size:16px; background-color:transparent; border:none; font-family:Roboto, Lucida Sans Typewriter, Lucida Console, Monaco, Bitstream Vera Sans Mono, monospace;">
+        <p>SCHNELL - Firmen aus Ihrer Region finden.</p>
+        <p>KOSTENLOS - Offerten vergleichen.</p>
+        <p>TRANSPARENT - regionale Firmen auswählen.</p>
+        <a href="#howto_background"><p>So funktioniert's</p></a>
+      </div>
+</div>

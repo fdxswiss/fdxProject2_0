@@ -1,0 +1,81 @@
+{% load staticfiles %}
+	<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<a href="/">
+					<h4>
+						<img src="{% static 'img/LOGO_WHITE.png' %}" height="40px" />
+						FIRMDX
+					</h4>
+				</a>
+
+				<p class="footer-links">
+					<a href="{% url 'index' %}">Home</a>
+					·
+					<a href="{% url 'aboutUs' %}">Über uns</a>
+					·
+					<a href="{% url 'impressum' %}">Impressum</a>
+					·
+					<a href="{% url 'kontakt' %}">Kontakt</a>
+					·
+					<a href="{% url 'agb' %}">AGB</a>
+				</p>
+				<div class="">
+					<a href="{% url 'umzug' %}">Umzug</a>
+					·
+					<a href="{% url 'reinigung' %}">Reinigung</a>
+					·
+					<a href="{% url 'maler' %}">Maler</a>
+					·
+					<a href="{% url 'sanitaer' %}">Sanitär</a>
+					·
+					<a href="{% url 'schreiner' %}">Schreiner</a>
+				</div>
+				<div class="">
+					<a href="{% url 'architekt' %}">Architekt</a>
+					·
+					<a href="{% url 'elektriker' %}">Elektriker</a>
+					·
+					<a href="{% url 'bodenbelaege' %}">Bodenbeläge</a>
+					·
+					<a href="{% url 'gartenbau' %}">Gartenbau</a>
+					·
+					<a href="{% url 'dachdecker' %}">Dachdecker</a>
+				</div>
+				<br>
+				<p class="footer-company-name">Firmdx &copy; 2018</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>Badenerstrasse 368</span> Zürich, Schweiz</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:info@firmdx.ch">info@firmdx.ch</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>Über Firmdx</span>
+					Firmdx ist ein unabhängiger Verglechsdienst, wir bieten die Möglichkeit schnell und kostenlos Regionale Offerten zu vergleichen. Alle eingetragenen Firmen sind geprüft und in der Schweiz tätig.
+				</p>
+
+				<!-- <div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-google"></i></a>
+
+				</div> -->
+
+			</div>
+
+		</footer>

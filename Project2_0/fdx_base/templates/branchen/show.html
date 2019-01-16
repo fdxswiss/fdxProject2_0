@@ -1,0 +1,452 @@
+{% extends 'home_show.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+{% block body %}
+    <!--background-color:#292c2f;-->
+    <div class="container-fluid" id="background_show">
+
+        <div class="container" id="ergebnisse">
+            <label style="color:; font-family:Roboto; font-size:28px; text-align:center;">{{ title }} Ergebnisse{% if query %}: Suche "{{ query }}" und Umgebung{% endif %}</label>
+        </div>
+        <div class="container" style="margin-right:auto; margin-left:auto; "><br><br>
+          <div class="thumbnail" style="border:none;">
+            <div class="thumbnail" style="float:right; background:transparent; color:; border:none; font-family:Roboto;">
+                <label style="">'Firmenbeschreibung' anklicken um eine Kurzinfo über die Firma zu sehen.</label>
+            </div>
+
+            <div class="thumbnail" style="float:; background:transparent; color:; border:none; font-family:Roboto;">
+                <label style="">'hinzufügen' anklicken und das Unternehmen wird in Ihre Anfrageliste hinzugefügt.</label>
+            </div>
+          </div>
+        </div>
+
+        <!--Formular show-->
+        <!--col-xs = phones - screens less than 768px wide-->
+        <!--col-sm = tablets - screens equal to or greater than 768px wide-->
+        <!--col-md = small laptops - screens equal to or greater than 992px wide-->
+
+          <div class="thumbnail" id="form-back" style="border:none; float:left; max-width:30%; background-color:; font-family:Roboto;">
+              {% if form %}
+                {% if title == "Umzug" %}
+                  {% include "forms/form_Umzug.html" %}
+                {% endif %}
+                {% if title == "Reinigung" %}
+                  {% include "forms/form_Reinigung.html" %}
+                {% endif %}
+                {% if title == "Maler" %}
+                  {% include "forms/form_Maler.html" %}
+                {% endif %}
+                {% if title == "Gartenbau" %}
+                  {% include "forms/form_Gartenbau.html" %}
+                {% endif %}
+                {% if title == "Schreiner" %}
+                  {% include "forms/form_Schreiner.html" %}
+                {% endif %}
+                {% if title == "Sanitaer" %}
+                  {% include "forms/form_Sanitaer.html" %}
+                {% endif %}
+                {% if title == "Elektriker" %}
+                  {% include "forms/form_Elektriker.html" %}
+                {% endif %}
+                {% if title == "Dachdecker" %}
+                  {% include "forms/form_Dachdecker.html" %}
+                {% endif %}
+                {% if title == "Bodenbelaege" %}
+                  {% include "forms/form_Bodenbelaege.html" %}
+                {% endif %}
+                {% if title == "Architekt" %}
+                  {% include "forms/form_Architekt.html" %}
+                {% endif %}
+              {% endif %}
+          </div>
+
+        <!--Show Firms-->
+        <div class="thumbnail" id="show_container" style="width:70%; float:right; background:transparent; border:none;">
+            {% for firma in firma_new %}
+                 <div class="col-xs-12 col-md-4 col-sm-4">
+                    <div class="thumbnail bgcolor" style="background-color:; border:none;">
+                        <div class="thumbnail" style="border:none; background-color:;">
+                          <div class="thumbnail" style="width:100%; height:150px; border:none; background:transparent;">
+                              <img src='{{ firma.firm_logo.url }}' class="img-responsive" alt="Responsive image"
+                               style="max-height:100%; max-width:100%;"/>
+                          </div>
+                          <div class="thumbnail">
+                            <a tabindex="0"  role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" id="{{ firma.id }}"
+                               title="{{ firma.name }} {{ firma.plz }} {{ firma.ort }}" data-content="{{ firma.beschreibung }}" style="border:none; border-bottom:1px solid lightgrey;">
+
+                             <!-- <img src="{% static 'img/question.png' %}" style="max-height:30px; margin-right:auto; margin-left:auto;"/> -->
+                              <div class="thumbnail">
+                                <div style="text-align:center; font-family:Roboto; width:100%; text-decoration:none;" title="Über Firmenberschreibung erhalten Sie eine Kurzinfo über dieses Unternehmen.">Firmenbeschreibung</div>
+                              </div>
+                            </a>
+                            <!-- <hr/> -->
+                            <label style="text-align:center; font-family:Roboto; width:100%; font-size:15px;">
+                              {{ firma.name }}
+                            </label>
+
+                            <label style="text-align:center; font-family:Roboto; width:100%; font-size:15px;">
+                              {{ firma.plz }} {{ firma.ort }}
+                            </label>
+
+                              <a href="{{ firma.homepage }}" target="_blank">
+                                <label style="text-align:center; font-family:Roboto; width:100%; font-size:15px;">
+                                  {{ firma.homepage }}
+                                </label>
+                              </a>
+
+                            <!-- <div class="thumbnail" style="border:none;">
+                                <h6>Bewertung:<img src="{% static 'img/4-stars.jpg' %}" width="100px">  <text style="float:right;">[ 4.6/5 ] (150)</text></h6>
+                            </div> -->
+                            <div class="thumbnail" style="height:50px; border:none; text-align:center;">
+                              <h5>Dienstleistungen</h5>
+                              <h6>{{ firma.branche }}</h6>
+                            </div>
+                            <button class="btn" id="{{ firma.name }}" value="{{ firma.eMail }}" onclick="myFunction(this)"
+                                    style="background-color:; width:100%; font-size:14px; border:none; font-family:Roboto; color:;" title="Mit hinzufügen setzten Sie dieses Unternhemen auf die Liste der Unternehmen die Ihre Anfrage erhalten."><strong>hinzufügen</strong>
+                            </button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!--Paginator-->
+        <div class="container" style="max-width:200px;">
+            {% if firma_new.has_other_pages %}
+              <ul class="pagination">
+                {% if firma_new.has_previous %}
+                  <li><a href="?page={{ firma_new.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in firma_new.paginator.page_range %}
+                  {% if firma_new.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if firma_new.has_next %}
+                  <li><a href="?page={{ firma_new.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+              </ul>
+            {% endif %}
+        </div>
+
+        <!--Back to top Button-->
+        <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Zurück zum Anfang"
+               data-toggle="tooltip" data-placement="left"
+               style="cursor:pointer; position:fixed; bottom:20px; right:20px; display:none; border:none; z-index:2;"><span class="glyphicon glyphicon-chevron-up"></span></a>
+        <div id="pop3"></div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- script scroll form, scroll backtotop  -->
+    <script>
+        var index = 0;
+        var res = [];
+        var mailList = [];
+
+        function myFunction(objValue){
+
+            e = document.getElementById("id_send");
+            mail = document.getElementById("mailList");
+
+            for(i = 0; i <= index; i++){
+                 if (("+ "+objValue.id + "\n") == res[i]){
+                    objValue.style.background = "lightgrey";
+                    objValue.innerHTML = "hinzufügen";
+                    objValue.style.color = "black";
+                    mailList.splice(i, 1);
+                    res.splice(i, 1);
+                    e.innerHTML = res;
+                    mail.innerHTML = mailList;
+                    index--;
+                    console.log(objValue.id);
+                    return
+                }
+            }
+
+            if (index == 5){
+                alert("Eine Anfrage - 5 Firmen maximal!")
+            }
+
+            if (index < 5){
+                objValue.style.background = "#287acc";
+                objValue.style.color = "white";
+                objValue.innerHTML = "entfernen";
+
+                {% for firm in firma_new %}
+                    if ("{{ firm.name }}" == objValue.id) {
+                        res[index] = "+ "+objValue.id + "\n";
+                        mailList[index] = " " + objValue.value;
+                        mail.innerHTML = mailList;
+                        e.innerHTML = res;
+                        index++;
+                    }
+                {% endfor %}
+            }
+        }
+
+        //scroll to top - form scroll
+        $(document).ready(function () {
+
+            $('body,html').animate({scrollTop: $('#background_show').offset().top - 50 }, 0);
+
+            $('[data-toggle="tooltip"]').tooltip();
+            elementPosition = $('#form-back').offset();
+            mapPosition = $('#sample').offset();
+
+            //refresh page on browser resize
+            $(window).bind('resize', function(e)
+            {
+              // console.log('window resized..');
+              // this.location.reload(false); /* false to get page from cache */
+              /* true to fetch page from server */
+            });
+
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 350) {
+                    $('#back-to-top').fadeIn();
+                    $('#search_bar2').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                    $('#search_bar2').fadeOut();
+                }
+
+                //Scroll Form
+                 if($(window).width() > 760 && $('#show_container').height() > 600){
+                    // <!--Anfrageformular: background-->
+                    $('#form-back').css('max-width','30%');
+                    // $('#form_floor').css('height', $('#show_container').height()).css('background-color','green').css('max-width','30%');
+                    if($(window).scrollTop() > elementPosition.top-100){
+                        <!--Anfrageformular positoin fixed-->
+                        $('#form-back').css('position','fixed').css('top','100px');
+                    }
+                    else{
+                        <!--Anfrageformular -->
+                        $('#form-back').css('position','static');
+                    }
+                    if($(window).scrollTop() > mapPosition.top-750){
+                        <!--Anfrageformular stop position fixed-->
+                        $('#form-back').css('position','absolute').css('margin-top', $('#show_container').height());
+                    }
+                    else{
+                      $('#form-back').css('margin-top','');
+                    }
+                 }
+                 else{
+                   $('#form-back').addClass('col-xs-12 col-sm-4 col-md-3').css('max-width','');
+                 }
+            });
+
+            $('#back-to-top').click(function () {
+                $('#back-to-top').tooltip('hide');
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+
+            $('#back-to-top').tooltip('show');
+        });
+
+    </script>
+
+<!-- script validate form, change form sites -->
+    <script>
+        //jQuery time
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var left, opacity, scale; //fieldset properties which we will animate
+        var animating; //flag to prevent quick multi-click glitches
+
+        var site_1 = document.getElementById("site_1");
+        var weiterButton = document.getElementById("step_1_okButton");
+
+        var site_2 = document.getElementById("site_2");
+        var weiterButtonSite2 = document.getElementById("step_2_okButton");
+        var submit = document.getElementById("submit");
+
+        var fields = $('#site_1').find("select, textarea, input");
+        var fieldsSite2 = $('#site_2').find("select, textarea, input");
+        var fieldSite3 = $('#site_3').find("select, textarea, input");
+
+        var flag = true;
+        var flagSite2 = true;
+        var flagSubmit = true;
+
+        var site = false;
+
+        function scanEachField(fields, flag){
+          var z = 0;
+          $.each(fields, function(i, field){
+            if (!field.value || field.value == "#"){
+                flag = false;
+                flagSite2 = false;
+                flagSubmit = false;
+                weiterButton.style.opacity = "0.5";
+                weiterButtonSite2.style.opacity = "0.5";
+                submit.style.opacity = "0.5";
+                z++;
+            }
+            else if (z < 1){
+                flag = true;
+                flagSite2 = true;
+                flagSubmit = true;
+                weiterButton.style.opacity = "";
+                weiterButtonSite2.style.opacity = "";
+                submit.style.opacity = "";
+                console.log("FLAG: TRUE :: z<1 :: " + field.value);
+              }
+          });
+          return flag;
+        };
+
+        // EventListener
+        $("#msform").ready(function(){
+          flag  = scanEachField(fields, flag);
+          flagSite2 = scanEachField(fieldsSite2, flagSite2);
+          flagSubmit = scanEachField(fieldSite3, flagSubmit);
+        });
+
+        site_1.addEventListener('mousedown', (event) => {
+          flag = scanEachField(fields, flag);
+        });
+
+        site_1.addEventListener('keydown', (event) => {
+          flag = scanEachField(fields, flag);
+        });
+
+        site_2.addEventListener('mousedown', (event) => {
+          flagSite2 = scanEachField(fieldsSite2, flagSite2);
+        });
+
+        site_2.addEventListener('keydown', (event) => {
+          flagSite2 = scanEachField(fieldsSite2, flagSite2);
+        });
+
+        site_3.addEventListener('keydown', (event) => {
+          flagSubmit = scanEachField(fieldSite3, flagSubmit)
+        });
+
+        submit.addEventListener('mouseover', (event) =>{
+          submitEvent = scanEachField(fieldSite3, flagSubmit)
+        });
+
+        // function change to next site
+        function changeToNextSite(current_fs, next_fs){
+          //activate next step on progressbar using the index of next_fs
+          $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+          //show the next fieldset
+          next_fs.show();
+            //hide the current fieldset with style
+              current_fs.animate({opacity: 0}, {
+                step: function(now, mx) {
+                  //as the opacity of current_fs reduces to 0 - stored in "now"
+                  //1. scale current_fs down to 80%
+                  scale = 1 - (1 - now) * 0.2;
+                  //2. bring next_fs from the right(50%)
+                  left = (now * 50)+"%";
+                  //3. increase opacity of next_fs to 1 as it moves in
+                  opacity = 1 - now;
+                  current_fs.css({
+                    'transform': 'scale('+scale+')',
+                    'position': 'absolute'
+                  });
+                  next_fs.css({'left': left, 'opacity': opacity});
+                },
+                  duration: 800,
+                  complete: function(){
+                  current_fs.hide();
+                  animating = false;
+                  },
+          });
+        }
+
+        // Input value abfrage wenn true nächste Seite
+        $(".next").click(function(){
+          if (flagSite2 == true && site == true){
+
+            animating = true;
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            changeToNextSite(current_fs, next_fs);
+
+          }
+          else if (flag != false && site == false){
+
+            animating = true;
+            site = true;
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            changeToNextSite(current_fs, next_fs);
+          }
+        });
+
+        $(".previous").click(function(){
+          if(animating) return false;
+          animating = true;
+
+          current_fs = $(this).parent();
+          previous_fs = $(this).parent().prev();
+
+          //de-activate current step on progressbar
+          $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+          //show the previous fieldset
+          previous_fs.show();
+          //hide the current fieldset with style
+          current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+              //as the opacity of current_fs reduces to 0 - stored in "now"
+              //1. scale previous_fs from 80% to 100%
+              scale = 0.8 + (1 - now) * 0.2;
+              //2. take current_fs to the right(50%) - from 0%
+              left = ((1-now) * 50)+"%";
+              //3. increase opacity of previous_fs to 1 as it moves in
+              opacity = 1 - now;
+              current_fs.css({'left': left});
+              previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function(){
+              current_fs.hide();
+              animating = false;
+            },
+            //this comes from the custom easing plugin
+            // easing: 'easeInOutBack'
+          });
+        });
+
+        $(".submit").click(function(){
+          if (flagSubmit == false){
+            return false;
+          }
+          else{
+            return true;
+          }
+        });
+
+        $("#msform").keypress(
+          function(event){
+             if (event.which == '13') {
+                event.preventDefault();
+              }
+        });
+
+    </script>
+</body>
+{% endblock %}

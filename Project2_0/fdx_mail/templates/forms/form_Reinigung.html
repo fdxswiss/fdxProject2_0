@@ -1,0 +1,96 @@
+{% load staticfiles %}
+<div id="aform" style="width:100%; margin-top:-50px;">
+    <form method="POST"  action="{% url 'formcheck' %}" id="msform">{% csrf_token %}
+      <input type="hidden" name="title" value="{{ title }}">
+        <!-- multistep form -->
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <!-- fieldsets -->
+          <fieldset id="site_1">
+            <h2 class="fs-title">Unternehmen hinzufügen</h2>
+            {{ form.firm_name }}
+            {{ form.mailList }}
+            <!-- <textarea id="id_send" name="firma_name" placeholder="Unternehmen in der Liste erhalten Ihre Anfrage" name="textfield" readonly style="max-width:100%; max-height:150px; min-height:140px; height:120px;"></textarea> -->
+            <!-- <textarea type="text" id="mailList" name="mailList" style="display:none;"></textarea> -->
+
+            <h6>Wunschdatum für Ihren Auftrag</h6>
+            <!-- <input type="date" name="Datum"/> -->
+            {{ form.datum }}
+
+            <h2 class="fs-title">{{ title }} - Anfrage starten!</h2>
+            <input type="button" id="step_1_okButton" name="next" class="next action-button" value="weiter" style="width:55%;"/>
+
+          </fieldset>
+
+          <fieldset id="site_2">
+            <h2 class="fs-title">Angaben zu Ihrer Reinigung</h2>
+            <h3 class="fs-title">Reinigungsart:</h3>
+
+            <select name="art1reinigung" style="background-color:transparent;">
+              <option value="#">Baureinigung</option>
+              <option value="Einfamilienhaus">Umzugsendreinigung</option>
+              <option value="Mehrfamilienhaus">Wohnungs-/Hausreinigung</option>
+              <option value="Mehrfamilienhaus">Weiteres</option>
+            </select>
+
+            <select name="art2reinigung" style="background-color:transparent;">
+              <option value="#">Etage</option>
+              <option value="EG">EG</option>
+              <option value="Etage_1">1</option>
+              <option value="Etage_2">2</option>
+              <option value="Etage_3">3</option>
+              <option value="Etage_4">4</option>
+              <option value="Etage_5">5</option>
+              <option value="Etage_6+">6+</option>
+            </select>
+
+            <!-- <input type="text" name="groesse" placeholder="Fläche in m2" /> -->
+            {{ form.groesse }}
+
+            <div class="thumbnail" style="width:45%; float:left;">
+              <input type="checkbox" name="abgabegarantie" value ="Abgabegarantie" class="custom-control-input" id="customCheck1" style="float:left; width:10%;"/>
+              <label for="customCheck1" style="font-size:10px;">Abgabegarantie</label>
+            </div>
+            <div class="thumbnail" style="width:45%; float:left;">
+              <input type="checkbox" name="teppichreinigung" value="Teppichreinigung" id="customCheck2" style="float:left; width:10%;"/>
+              <label for="customCheck2" style="font-size:10px;">Teppichreinigung</label>
+            </div>
+            <div class="thumbnail" style="width:45%; float:left;">
+             <input type="checkbox" name="lamellenstoren" value="Lamellenstoren" id="customCheck3" style="float:left; width:10%;"/>
+             <label for="customCheck3" style="font-size:10px;">Lamellenstoren</label>
+           </div>
+           <div class="thumbnail" style="width:45%; float:left;">
+            <input type="checkbox" name="garage" value="Garage" id="c" style="float:left; width:10%;"/>
+            <label for="c" style="font-size:10px;">Garage</label>
+          </div>
+          <div class="thumbnail" style="width:45%; float:left;">
+            <input type="checkbox" name="estrich" value="Estrich" id="e" style="float:left; width:10%;"/>
+            <label for="e" style="font-size:10px;">Estrich</label>
+          </div>
+          <div class="thumbnail" style="width:45%; float:left;">
+            <input type="checkbox" name="keller" value="Keller" id="customCheck4" style="float:left; width:10%;"/>
+            <label for="customCheck4" style="font-size:10px;">Keller</label>
+          </div>
+
+            <input type="button" name="previous" class="previous action-button" value="zurück" />
+            <input type="button" id="step_2_okButton" name="next" class="next action-button" value="weiter" />
+          </fieldset>
+
+          <fieldset id="site_3">
+            <h3 class="fs-title">Persönliche Angaben</h3>
+            <h3 class="fs-title">Persönliche Angaben</h3>
+            {{ form.fname }}
+            {{ form.lname }}
+            {{ form.tel }}
+            {{ form.email }}
+            <h3 class="fs-title">Zusätzliche Informationen</h3>
+            {{ form.beschreibung }}
+            <input type="button" name="previous" class="previous action-button" value="zurück" />
+            <input type="submit" id="submit" name="submit" class="submit action-button" value="weiter" />
+          </fieldset>
+    </form>
+</div>
