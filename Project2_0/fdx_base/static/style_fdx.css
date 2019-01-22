@@ -12,6 +12,13 @@
   text-align:center;
 }
 
+.bs-example{
+  width:300px;
+  float:left;
+  opacity: 0.85;
+  color:white;
+}
+
 #ds_cokkie_info{
   display:none;
   position:absolute;
@@ -22,6 +29,7 @@
   width:100%;
   background-color: white;
   text-align: center;
+  opacity: 0.8;
 }
 
 #suche{
@@ -42,9 +50,9 @@
     right:0;
     left:0;
     margin: 0 auto;
-    max-height:800px;
+    max-height:900px;
     margin-bottom:50px;
-    margin-top:-100px;
+    margin-top:-150px;
 }
 
 .multiCheckBox {
@@ -68,6 +76,7 @@
   color:;
   text-align: center;
   border: none;
+  font-family: Arial;
 
 }
 #search_index_input_background{
@@ -81,14 +90,12 @@
 }
 
 #search_index_input_background_label{
-  width:160px;
-  margin-bottom:-5px;
-  font-family: Arial, Lucida Sans Typewriter, Lucida Console, Monaco, Bitstream Vera Sans Mono, monospace;
-  font-size: 22px;
+  width:150px;
+  height:50px;
+  margin-bottom: -10px;
+  padding-top: -40px;
+  font-family: Arial, Lucida Sans Typewriter;
   border:none;
-  box-shadow: 2px 3px 3px grey;
-  background-color:;
-  color:;
 }
 
 #search_index_input{
@@ -346,7 +353,7 @@ html {
 	position: relative;
 }
 
-#msform fieldset {
+#msform fielet {
 	background: white;
 	border: 0 none;
 	border-radius: 3px;

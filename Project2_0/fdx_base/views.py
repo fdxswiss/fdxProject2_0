@@ -1,6 +1,19 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
+from fdx_mail.forms import *
+from fdx_mail.form_req import SendMassMail
+from .firm import Firmeneintrag_new
+from .search_plz import Search
+from fdx_google.geocoords import geo
+from .models import Firma
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import random
+from django.contrib import messages
+from HT import GOOGLE_KEY
+from django.core.mail import send_mail
+
+firm_list = Firma.objects.all()
 
 def index(request):
 
@@ -9,105 +22,107 @@ def index(request):
     return render(request, 'index.html', context)
 
 def show(request, name):
-    #
-    # global firm_list
-    #
-    # n = name
-    # q = request.POST.get("query")
-    #
-    # firma = Firmeneintrag_new()
-    # f = firma.loadF(name)
-    # f_mix = list(f)
-    # random.shuffle(f_mix)
-    #
-    # geocode = geo.getAllGeocoords(f)
-    # lat, lng, firm_id = geocode
-    #
-    # forms = {
-    #     'Umzug': UmzugFormular(),
-    #     'Reinigung': ReinigungFormular(),
-    #     'Maler': MalerFormular(),
-    #     'Schreiner': SchreinerFormular(),
-    #     'Sanitaer': SanitaerFormular(),
-    #     'Dachdecker': DachdeckerFormular(),
-    #     'Gartenbau': GartenbauFormular(),
-    #     'Architekt': ArchitektFormular(),
-    #     'Elektriker': ElektrikerFormular(),
-    #     'Bodenbelaege': BodenbelaegeFormular(),
-    # }
-    #
-    # form = forms.get(n)
-    #
-    # firm_name = []
-    # for f_search in f:
-    #     for id in firm_id:
-    #         if f_search.id == id:
-    #             firm_name.append(f_search)
-    #
-    # # Suche nach Postleitzahl
-    # if q and q.isnumeric() and len(q) == 4:
-    #     search = Search()
-    #     # lat, lng, firm_id = geocode[n]
-    #     # print(firm_id)
-    #     firm_search, dist = search.filter_plz(f, q)
-    #     firm_search_name = firm_search
-    #
-    #     firm_name = []
-    #     for f_search in f:
-    #         for id in firm_id:
-    #             if f_search.id == id:
-    #                 firm_name.append(f_search)
-    #
-    #     #GET DISTANCE WITH MATH
-    #     # dist_math = geo.get_distance(q, geocode[n], firm_search)
-    #     # dist_math.sort()
-    #     # print("DIST_MATH : ", dist_math)
-    #
-    #     # PAGINATOR
-    #     # firm_search = pagi(request, firm_search, 30)
-    #
-    #     context = {
-    #         's_id': request.session.session_key,
-    #         'title': n,
-    #         'firma_new': firm_search,
-    #         'query': q,
-    #         'form': form,
-    #         'lat': lat,
-    #         'lng': lng,
-    #         'distance': dist,
-    #         'anz': len(firm_search),
-    #         'anz_f': firm_list.count(),
-    #         'anz_a': a.count()*3,
-    #         'firm_id': firm_id,
-    #         'firm_name': firm_name,
-    #         'GOOGLE_KEY': GOOGLE_KEY
-    #     }
-    #
-    #     return render(request, 'branchen/show.html', context)
-    # elif q and len(q) < 4:
-    #     messages.warning(request, 'Schweizer Postleitzahl eintragen. Beispiel: "8000" für Zürich')
-    # elif q and q.isnumeric() == False:
-    #     messages.warning(request, 'Schweizer Postleitzahl eintragen. Beispiel: "8000" für Zürich')
-    #
-    # # PAGINATOR
-    # f_mix = pagi(request, f_mix, 5)
-    #
+
+    global firm_list
+
+    n = name
+    q = request.POST.get("query")
+
+    firma = Firmeneintrag_new()
+    f = firma.loadF(name)
+    f_mix = list(f)
+    random.shuffle(f_mix)
+
+    geocode = geo.getAllGeocoords(f)
+    lat, lng, firm_id = geocode
+
+    forms = {
+        'Umzug': UmzugFormular(),
+        'Reinigung': ReinigungFormular(),
+        'Maler': MalerFormular(),
+        'Schreiner': SchreinerFormular(),
+        'Sanitaer': SanitaerFormular(),
+        'Dachdecker': DachdeckerFormular(),
+        'Gartenbau': GartenbauFormular(),
+        'Architekt': ArchitektFormular(),
+        'Elektriker': ElektrikerFormular(),
+        'Bodenbelaege': BodenbelaegeFormular(),
+    }
+
+    form = forms.get(n)
+
+    firm_name = []
+    for f_search in f:
+        for id in firm_id:
+            if f_search.id == id:
+                firm_name.append(f_search)
+
+    # Suche nach Postleitzahl
+    if q and q.isnumeric() and len(q) == 4:
+        search = Search()
+        # lat, lng, firm_id = geocode[n]
+        # print(firm_id)
+        firm_search, dist = search.filter_plz(f, q)
+        firm_search_name = firm_search
+
+        firm_name = []
+        for f_search in f:
+            for id in firm_id:
+                if f_search.id == id:
+                    firm_name.append(f_search)
+
+        #GET DISTANCE WITH MATH
+        # dist_math = geo.get_distance(q, geocode[n], firm_search)
+        # dist_math.sort()
+        # print("DIST_MATH : ", dist_math)
+
+        # PAGINATOR
+        # firm_search = pagi(request, firm_search, 30)
+
+        context = {
+            's_id': request.session.session_key,
+            'title': n,
+            'firma_new': firm_search,
+            'query': q,
+            'form': form,
+            'lat': lat,
+            'lng': lng,
+            'distance': dist,
+            'anz': len(firm_search),
+            'anz_f': firm_list.count(),
+            # 'anz_a': a.count()*3,
+            'firm_id': firm_id,
+            'firm_name': firm_name,
+            'GOOGLE_KEY': GOOGLE_KEY
+        }
+
+        return render(request, 'branchen/show.html', context)
+    elif q and len(q) < 4:
+        messages.warning(request, 'Schweizer Postleitzahl eintragen. Beispiel: "8000" für Zürich')
+    elif q and q.isnumeric() == False:
+        messages.warning(request, 'Schweizer Postleitzahl eintragen. Beispiel: "8000" für Zürich')
+
+    # PAGINATOR
+    f_mix = pagi(request, f_mix, 5)
+
     context = {
-        # 's_id': request.session.session_key,
-        # 'title': n,
-        # 'firma_new': f_mix,
-        # 'form': form,
-        # 'lat': lat,
-        # 'lng': lng,
-        # 'anz': f.count(),
-        # 'anz_f': firm_list.count(),
+        's_id': request.session.session_key,
+        'title': n,
+        'firma_new': f_mix,
+        'form': form,
+        'lat': lat,
+        'lng': lng,
+        'anz': f.count(),
+        'anz_f': firm_list.count(),
         # 'anz_a': a.count()*3,
-        # 'firm_name': firm_name,
-        # 'firm_id': firm_id,
-        # 'GOOGLE_KEY': GOOGLE_KEY
+        'firm_name': firm_name,
+        'firm_id': firm_id,
+        'GOOGLE_KEY': GOOGLE_KEY
     }
 
     return render(request, 'branchen/show.html', context)
+
+
 
 ######## OFFERTEN ANFRAGE FORMULAR ########
 def formcheck(request):

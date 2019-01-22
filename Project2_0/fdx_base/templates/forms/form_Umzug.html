@@ -1,0 +1,114 @@
+{% load staticfiles %}
+<div id="aform" style="width:100%; margin-top:-50px; font-family:Roboto;">
+    <form id="msform" method="POST" action="{% url 'formcheck' %}" >{% csrf_token %}
+      <input type="hidden" name="title" value="{{ title }}">
+        <!-- multistep form -->
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <!-- fieldsets -->
+          <fieldset id="site_1">
+
+            <h2 class="fs-title">Unternehmen hinzufügen</h2>
+            {{ form.firm_name }}
+            {{ form.mailList }}
+            <!-- <textarea id="id_send" name="firma_name" placeholder="Unternehmen in der Liste erhalten Ihre Anfrage" readonly style="max-width:100%; max-height:150px; min-height:140px; height:120px;" ></textarea> -->
+            <!-- <textarea type="text" id="mailList" name="mailList" style="display:none;"></textarea> -->
+            <h6>Wunschdatum für Ihren Auftrag</h6>
+            <!-- <input type="date" id="date" name="Datum" /> -->
+            {{ form.datum }}
+            <hr>
+            <label for="von" class="" style="width:20%;">Von</label>
+            <!-- <input type="text" name="von" id="von" placeholder="Postleitzahl/Ort" style="width:70%;" /> -->
+            {{ form.von }}
+
+            <label for="nach" class="" style="width:20%;">Nach</label>
+            <!-- <input type="text" name="nach" id="nach" placeholder="Postleitzahl/Ort" style="width:70%;" /> -->
+            {{ form.nach }}
+
+            <div id="infoField"></div>
+            <h2 class="fs-title">{{ title }} Anfrage starten!</h2>
+            <input id="step_1_okButton" type="button" name="next" class="next action-button" value="weiter" style="width:55%;" />
+
+          </fieldset>
+          <fieldset id="site_2">
+            <h2 class="fs-title">Angaben zu Ihrem Umzug</h2>
+            <h3 class="fs-title">Auszug:</h3>
+
+            <select name="art1" style="background-color:transparent;">
+              <option value="#">Wohnobjekt</option>
+              <option value="Einfamilienhaus">Einfamilienhaus</option>
+              <option value="Mehrfamilienhaus">Mehrfamilienhaus</option>
+            </select>
+            <select name="art2" style="background-color:transparent;">
+              <option value="#">Etage</option>
+              <option value="EG">EG</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6+">6+</option>
+            </select>
+            <select name="art3" style="background-color:transparent; width:100%;">
+              <option value="#">Lift vorhanden?</option>
+              <option value="Lift_Auszug_Ja">Ja</option>
+              <option value="Lift_Auszug_Nein">Nein</option>
+            </select>
+
+            <input type="checkbox" name="keller" value="Keller" id="customCheck1" style="width:10%;"/>
+            <label for="customCheck1">Keller</label>
+            <input type="checkbox" name="garage" value="Garage" id="c" style="width:10%;"/>
+            <label for="c">Garage</label>
+            <input type="checkbox" name="estrich" value="Estrich" id="e" style="width:10%;"/>
+            <label for="e">Estrich</label>
+
+            <h3 class="fs-title">Einzug:</h3>
+
+            <select name="art4" style="background-color:transparent; width:100%;">
+              <option value="#">Wohnobjekt</option>
+              <option value="Einfamilienhaus">Einfamilienhaus</option>
+              <option value="Mehrfamilienhaus">Mehrfamilienhaus</option>
+            </select>
+            <select name="art5" style="background-color:transparent; width:100%;">
+              <option value="#">Etage</option>
+              <option value="EG">EG</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6+">6+</option>
+            </select>
+            <select  name="art6" style="background-color:transparent; width:100%;">
+              <option value="#">Lift vorhanden?</option>
+              <option value="Ja">Ja</option>
+              <option value="Nein">Nein</option>
+            </select>
+
+            <input type="button" name="previous" class="previous action-button" value="zurück" />
+            <input id="step_2_okButton" type="button" name="next" class="next action-button" value="weiter" />
+          </fieldset>
+
+          <fieldset id="site_3">
+            <h3 class="fs-title">Persönliche Angaben</h3>
+            <!-- <input type="text" name="fname" placeholder="Vorname" /> -->
+            {{ form.fname }}
+            {{ form.lname }}
+            {{ form.tel }}
+            {{ form.email }}
+            {{ form.beschreibung }}
+<!--
+            <input type="text" name="lname" placeholder="Nachname" />
+            <input type="text" name="tel" placeholder="Telefonnummer" />
+            <input type="text" name="email" placeholder="Email" />
+            <h3 class="fs-title">Zusätzliche Informationen</h3>
+            <textarea placeholder="" name="beschreibung" style="max-width:100%; max-height:150px; min-height:150px;"></textarea> -->
+            <input type="button" name="previous" class="previous action-button" value="zurück" />
+            <input type="submit" id="submit" name="submit" class="submit action-button" value="weiter" />
+          </fieldset>
+    </form>
+</div>

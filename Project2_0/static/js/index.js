@@ -7,6 +7,8 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
     $('#ds_cokkie_info').fadeIn(3000);
+    // var plzeintragen = document.GetElementById("plzeintragen");
+    $("#plzeintragen").fadeIn(6000);
 
     $('#cookie_ok').click(function() {
       $('#ds_cokkie_info').fadeOut();
