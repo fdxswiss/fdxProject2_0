@@ -17,7 +17,34 @@ firm_list = Firma.objects.all()
 
 def index(request):
 
-    context = {}
+    fl = list(firm_list)
+    random.shuffle(fl)
+    q = request.POST.get("query")
+
+    if q and q.isnumeric() and len(q) == 4 and request.POST.get("select") != 'X':
+        return show(request, request.POST.get('select'))
+    elif q and len(q) != 4 or request.POST.get("select") == 'X':
+        messages.warning(request, 'Postleitzahl eintragen und Branche wählen')
+
+    if request.POST.get("name"):
+        sendTo = SendMassMail()
+        mail_list = sendTo.sendmailtofirms(request)
+
+        if mail_list == 0:
+            return render(request, 'responses/res_email_not.html')
+
+        context = {
+            'mail_list': mail_list,
+            'form': request.POST
+        }
+
+        return render(request, 'responses/offerResponseSite.html', context)
+
+    context = {
+        'firma_new': fl[:12],
+        'anz_f': firm_list.count(),
+        # 'anz_a': a.count()*3
+    }
 
     return render(request, 'index.html', context)
 
@@ -57,6 +84,22 @@ def show(request, name):
             if f_search.id == id:
                 firm_name.append(f_search)
 
+    firmNameList = []
+    firmStrasseList = []
+    firmNrList = []
+    firmOrtList = []
+    firmPlzList = []
+    firmLogoList = []
+    firmHomepageList = []
+    for fn in firm_name:
+        firmNameList.append(fn.name)
+        firmStrasseList.append(fn.strasse)
+        firmNrList.append(fn.nr)
+        firmOrtList.append(fn.ort)
+        firmPlzList.append(fn.plz)
+        firmLogoList.append(fn.firm_logo)
+        firmHomepageList.append(fn.homepage)
+
     # Suche nach Postleitzahl
     if q and q.isnumeric() and len(q) == 4:
         search = Search()
@@ -92,11 +135,18 @@ def show(request, name):
             'anz_f': firm_list.count(),
             # 'anz_a': a.count()*3,
             'firm_id': firm_id,
-            'firm_name': firm_name,
+            'firm_name': firmNameList,
+            'firm_strasse': firmStrasseList,
+            'firm_nr': firmNrList,
+            'firm_plz': firmPlzList,
+            'firm_ort': firmOrtList,
+            'firm_homepage': firmHomepageList,
+            'firm_logo': firmLogoList,
             'GOOGLE_KEY': GOOGLE_KEY
         }
 
-        return render(request, 'branchen/show.html', context)
+        return render(request, 'branchen/show0.html', context)
+
     elif q and len(q) < 4:
         messages.warning(request, 'Schweizer Postleitzahl eintragen. Beispiel: "8000" für Zürich')
     elif q and q.isnumeric() == False:
@@ -115,12 +165,19 @@ def show(request, name):
         'anz': f.count(),
         'anz_f': firm_list.count(),
         # 'anz_a': a.count()*3,
-        'firm_name': firm_name,
+        'firm_name': firmNameList,
+        'firm_strasse': firmStrasseList,
+        'firm_nr': firmNrList,
+        'firm_plz': firmPlzList,
+        'firm_ort': firmOrtList,
+        'firm_homepage': firmHomepageList,
+        'firm_logo': firmLogoList,
         'firm_id': firm_id,
         'GOOGLE_KEY': GOOGLE_KEY
     }
 
-    return render(request, 'branchen/show.html', context)
+
+    return render(request, 'branchen/show0.html', context)
 
 
 

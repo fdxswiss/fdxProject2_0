@@ -1,4 +1,7 @@
 {% load staticfiles %}
+<head>
+  <link rel="stylesheet" href='{% static "style_fdx.css" %}' />
+</head>
 <div id="aform" style="width:100%; margin-top:-50px; font-family:Roboto;">
     <form id="msform" method="POST" action="{% url 'formcheck' %}" >{% csrf_token %}
       <input type="hidden" name="title" value="{{ title }}">

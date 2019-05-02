@@ -10,13 +10,28 @@
      var anz_lat = 0;
      anz_lat = lat.length;
 
-     var firm_id = [];
-     firm_id = {{ firm_id }};
-     console.log("Firm ID", firm_id);
+     var f_name = [];
 
-     var firm = [];
-     firm = '{{ firm_name }}';
-     firm = firm.split('&gt;');
+     firm_name= '{{ firm_name }}';
+     f_name = firm_name.split(',');
+
+     firm_homepage= '{{ firm_homepage }}';
+     f_homepage = firm_homepage.split(',');
+
+     firm_strasse= '{{ firm_strasse }}';
+     f_strasse= firm_strasse.split(',');
+
+     firm_nr= '{{ firm_nr }}';
+     f_nr= firm_nr.split(',');
+
+     firm_plz= '{{ firm_plz }}';
+     f_plz= firm_plz.split(',');
+
+     firm_ort= '{{ firm_ort }}';
+     f_ort= firm_ort.split(',');
+
+     f_logo = '{{ firma.firm_logo.url }}';
+     console.log("LOGO ", f_logo);
 
      function loadMap(){
 
@@ -26,15 +41,47 @@
       };
 
       var map = new google.maps.Map(document.getElementById("sample"), mapOptions);
+      var marker = [];
+      var infowindow = [];
 
-      //setMarker
+      var addListener = function(i){
+        google.maps.event.addListener(marker[i], 'click', function(){
+          infowindow[i].open(map, marker[i]);
+        });
+
+        google.maps.event.addListener(map, 'click', function() {
+          infowindow[i].close();
+        });
+
+      }
+
+      //SETMarker
+      //SET onclick Infowindow on Marker
       for(i = 0; i<=anz_lat; i++){
-          var marker = new google.maps.Marker({
+          var contentString = '<div id="content">'+
+           '<h4 id="firstHeading" class="firstHeading">'+ f_name[i].substring(7, f_name[i].length -5) +'</h4>'+
+           '<div id="bodyContent">'+
+           '<div class="conatiner">'+
+           '<a href="'+f_homepage[i].substring(7, f_homepage[i].length -5)+'">'+f_homepage[i].substring(7, f_homepage[i].length -5)+'</a><br><br>'+
+           f_strasse[i].substring(7, f_strasse[i].length -5)+' '+f_nr[i].substring(7, f_nr[i].length -5)+'<br>'+
+           f_plz[i].substring(7, f_plz[i].length -5)+' '+f_ort[i].substring(7, f_ort[i].length -5)+
+           '</div>'+
+           '</div>'+
+           '</div>';
+          infowindow[i] = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 250
+          });
+
+          marker[i] = new google.maps.Marker({
             position: new google.maps.LatLng(lat[i], lng[i]),
             map: map,
-            animation: google.maps.Animation.BOUNCE,
-            title: firm[i].substring(11),
+            animation: google.maps.Animation.DROP,
+            title: '',
           });
+
+          addListener(i);
       }
+
     }
 </script>

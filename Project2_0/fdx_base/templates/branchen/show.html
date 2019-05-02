@@ -28,7 +28,7 @@
         <!--col-sm = tablets - screens equal to or greater than 768px wide-->
         <!--col-md = small laptops - screens equal to or greater than 992px wide-->
 
-          <div class="thumbnail" id="form-back" style="border:none; float:left; max-width:25%; background-color:; font-family:Roboto;">
+          <div class="thumbnail" id="form-back" style="border:none; float:left; max-width:20%; background-color:; font-family:Roboto;">
               {% if form %}
                 {% if title == "Umzug" %}
                   {% include "forms/form_Umzug.html" %}
@@ -67,13 +67,13 @@
         <div class="thumbnail" id="show_container" style="width:70%; float:right; background:transparent; border:none;">
             {% for firma in firma_new %}
                  <div class="col-xs-12 col-md-4 col-sm-4">
-                    <div class="thumbnail bgcolor" style="background-color:; border:none;">
-                        <div class="thumbnail" style="border:none; background-color:;">
-                          <div class="thumbnail" style="width:100%; height:150px; border:none; background:transparent;">
+                    <div class="thumbnail bgcolor bordernone">
+                        <div class="thumbnail bordernone">
+                          <div class="thumbnail bordernone" style="width:100%; height:150px; background:transparent;">
                               <img src='{{ firma.firm_logo.url }}' class="img-responsive" alt="Responsive image"
                                style="max-height:100%; max-width:100%;"/>
                           </div>
-                          <div class="thumbnail">
+                          <div class="thumbnail bodernone">
                             <a tabindex="0"  role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" id="{{ firma.id }}"
                                title="{{ firma.name }} {{ firma.plz }} {{ firma.ort }}" data-content="{{ firma.beschreibung }}" style="border:none; border-bottom:1px solid lightgrey;">
 
@@ -147,120 +147,6 @@
     </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- script scroll form, scroll backtotop  -->
-    <script>
-    var index = 0;
-    var res = [];
-    var mailList = [];
-
-    function myFunction(objValue){
-
-        e = document.getElementById("id_send");
-        mail = document.getElementById("mailList");
-
-        for(i = 0; i <= index; i++){
-             if (("+ "+objValue.id + "\n") == res[i]){
-                objValue.style.background = "lightgrey";
-                objValue.innerHTML = "hinzufügen";
-                objValue.style.color = "black";
-                mailList.splice(i, 1);
-                res.splice(i, 1);
-                e.innerHTML = res;
-                mail.innerHTML = mailList;
-                index--;
-                console.log(objValue.id);
-                return
-            }
-        }
-
-        if (index == 5){
-            alert("Eine Anfrage - 5 Firmen maximal!")
-        }
-
-        if (index < 5){
-            objValue.style.background = "#287acc";
-            objValue.style.color = "white";
-            objValue.innerHTML = "entfernen";
-
-            {% for firm in firma_new %}
-                if ("{{ firm.name }}" == objValue.id) {
-                    res[index] = "+ "+objValue.id + "\n";
-                    mailList[index] = " " + objValue.value;
-                    mail.innerHTML = mailList;
-                    e.innerHTML = res;
-                    index++;
-                }
-            {% endfor %}
-        }
-    }
-
-    //scroll to top - form scroll
-    $(document).ready(function () {
-
-        $('body,html').animate({scrollTop: $('#background_show').offset().top - 50 }, 0);
-
-        $('[data-toggle="tooltip"]').tooltip();
-        elementPosition = $('#form-back').offset();
-        mapPosition = $('#sample').offset();
-
-        //refresh page on browser resize
-        $(window).bind('resize', function(e)
-        {
-          // console.log('window resized..');
-          // this.location.reload(false); /* false to get page from cache */
-          /* true to fetch page from server */
-        });
-
-
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 350) {
-                $('#back-to-top').fadeIn();
-                $('#search_bar2').fadeIn();
-            } else {
-                $('#back-to-top').fadeOut();
-                $('#search_bar2').fadeOut();
-            }
-
-            //Scroll Form
-             if($(window).width() > 760 && $('#show_container').height() > 600){
-                // <!--Anfrageformular: background-->
-                $('#form-back').css('max-width','30%');
-                // $('#form_floor').css('height', $('#show_container').height()).css('background-color','green').css('max-width','30%');
-                if($(window).scrollTop() > elementPosition.top-100){
-                    <!--Anfrageformular positoin fixed-->
-                    $('#form-back').css('position','fixed').css('top','100px');
-                }
-                else{
-                    <!--Anfrageformular -->
-                    $('#form-back').css('position','static');
-                }
-                if($(window).scrollTop() > mapPosition.top-750){
-                    <!--Anfrageformular stop position fixed-->
-                    $('#form-back').css('position','absolute').css('margin-top', $('#show_container').height());
-                }
-                else{
-                  $('#form-back').css('margin-top','');
-                }
-             }
-             else{
-               $('#form-back').addClass('col-xs-12 col-sm-4 col-md-3').css('max-width','');
-             }
-        });
-
-        $('#back-to-top').click(function () {
-            $('#back-to-top').tooltip('hide');
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-
-        $('#back-to-top').tooltip('show');
-    });
-
-    </script>
-
 <!-- script validate form, change form sites -->
     <script>
     //jQuery time
@@ -445,6 +331,118 @@
          if (event.which == '13') {
             event.preventDefault();
           }
+    });
+
+    </script>
+<!-- script scroll form, scroll backtotop  -->
+    <script>
+    var index = 0;
+    var res = [];
+    var mailList = [];
+
+    function myFunction(objValue){
+
+        e = document.getElementById("id_send");
+        mail = document.getElementById("mailList");
+
+        for(i = 0; i <= index; i++){
+             if (("+ "+objValue.id + "\n") == res[i]){
+                objValue.style.background = "lightgrey";
+                objValue.innerHTML = "hinzufügen";
+                objValue.style.color = "black";
+                mailList.splice(i, 1);
+                res.splice(i, 1);
+                e.innerHTML = res;
+                mail.innerHTML = mailList;
+                index--;
+                console.log(objValue.id);
+                return
+            }
+        }
+
+        if (index == 5){
+            alert("Eine Anfrage - 5 Firmen maximal!")
+        }
+
+        if (index < 5){
+            objValue.style.background = "#287acc";
+            objValue.style.color = "white";
+            objValue.innerHTML = "entfernen";
+
+            {% for firm in firma_new %}
+                if ("{{ firm.name }}" == objValue.id) {
+                    res[index] = "+ "+objValue.id + "\n";
+                    mailList[index] = " " + objValue.value;
+                    mail.innerHTML = mailList;
+                    e.innerHTML = res;
+                    index++;
+                }
+            {% endfor %}
+        }
+    }
+
+    //scroll to top - form scroll
+    $(document).ready(function () {
+
+        $('body,html').animate({scrollTop: $('#background_show').offset().top - 50 }, 0);
+
+        $('[data-toggle="tooltip"]').tooltip();
+        elementPosition = $('#form-back').offset();
+        mapPosition = $('#sample').offset();
+
+        //refresh page on browser resize
+        $(window).bind('resize', function(e)
+        {
+          // console.log('window resized..');
+          // this.location.reload(false); /* false to get page from cache */
+          /* true to fetch page from server */
+        });
+
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 350) {
+                $('#back-to-top').fadeIn();
+                $('#search_bar2').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+                $('#search_bar2').fadeOut();
+            }
+
+            //Scroll Form
+             if($(window).width() > 760 && $('#show_container').height() > 600){
+                // <!--Anfrageformular: background-->
+                $('#form-back').css('max-width','30%');
+                // $('#form_floor').css('height', $('#show_container').height()).css('background-color','green').css('max-width','30%');
+                if($(window).scrollTop() > elementPosition.top-100){
+                  //  <!--Anfrageformular positoin fixed-->
+                    $('#form-back').css('position','fixed').css('top','100px');
+                }
+                else{
+                  //  <!-- Anfrageformular -->
+                    $('#form-back').css('position','static');
+                }
+                if($(window).scrollTop() > mapPosition.top-750){
+                  //  <!--Anfrageformular stop position fixed-->
+                    $('#form-back').css('position','absolute').css('margin-top', $('#show_container').height());
+                }
+                else{
+                  $('#form-back').css('margin-top','');
+                }
+             }
+             else{
+               $('#form-back').addClass('col-xs-12 col-sm-4 col-md-3').css('max-width','');
+             }
+        });
+
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
     });
 
     </script>

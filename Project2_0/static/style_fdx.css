@@ -2,6 +2,10 @@
     width:100%;
 }
 
+.bordernone{
+  border:none;
+}
+
 #ergebnisse{
   text-align:center;
   background:transparent;
@@ -71,14 +75,15 @@
   font-family: Arial;
   color:white;
 }
+
 .stats{
   background-color:;
   color:;
   text-align: center;
   border: none;
   font-family: Arial;
-
 }
+
 #search_index_input_background{
     background:transparent;
     border:none;
@@ -90,12 +95,13 @@
 }
 
 #search_index_input_background_label{
-  width:150px;
+  width:250px;
   height:50px;
   margin-bottom: -10px;
   padding-top: -40px;
   font-family: Arial, Lucida Sans Typewriter;
   border:none;
+  text-align: center;
 }
 
 #search_index_input{
@@ -306,6 +312,11 @@
 	margin-bottom: 5px;
 }
 
+@media (max-width: 400px) {
+  #form-back{
+    z-index:99;
+  }
+}
 @media (max-width: 880px) {
 
 	.footer-distributed{
@@ -353,11 +364,11 @@ html {
 	position: relative;
 }
 
-#msform fielet {
+#msform fieldset {
 	background: white;
 	border: 0 none;
 	border-radius: 3px;
-	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.4);
 	padding: 20px 30px;
 	box-sizing: border-box;
 	width: 80%;
